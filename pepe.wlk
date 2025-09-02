@@ -9,7 +9,32 @@ object pepe {
   )) + bonoPresentismo.bono(self)
 }
 
+object sofia {
+  var property bonoResultados = bonoNulo
+  var property categoria = cadete
+  var property ausencias = 0
+  const plusNeto = 1.30
+  
+  method sueldo() = categoria.neto()*plusNeto + bonoResultados.bono(self)
+}
 
+object roque {
+  var property neto = 28000 
+  var property bonoResultados = bonoNulo
+  method sueldo() {
+    return neto + bonoResultados.bono(self)
+  }
+}
+
+object ernesto {
+  var property neto = 28000 
+  var property bonoPresentismo = bonoNulo
+  const ausencias = 0
+
+  method sueldo() {
+    return neto + bonoPresentismo.bono(self)
+  }
+}
 
 object gerente {
   //gerentes que ganan $15.000
@@ -24,8 +49,33 @@ object cadete {
   //puede haber más categorías.
   method neto() = 20000
 }
+object vendedor {
+  //gerentes que ganan $15.000
+  //cadetes cuyo neto es $20.000
+  //puede haber más categorías.
+  var aumentoPorVentas = 0
+  method neto() = 16000
+
+  method activarAumentoPorMuchasVentas() {
+    aumentoPorVentas = 1
+  }
+
+  method desactivarAumentoPorMuchasVentas() {
+    aumentoPorVentas = 0
+  }
+
+
+}
+
+object medioTiempo {
+  //modificador de categorias, indica que el neto es 0,5
+  method categoriaBase(categoria){
+    return  categoria.neto()*0.5
+  }
+}
 
 object bonoPorcentaje {
+  //se puede enviar/recibir 
   method bono(empleado) = empleado.categoria().neto() * 0.1
 }
 
